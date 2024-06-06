@@ -5,6 +5,7 @@ const connectDB = require("./db/connect");
 
 // Middleware
 const authenticateUser = require("./middleware/authentication");
+const notFoundMiddleware = require("./middleware/not-found");
 
 // Routers
 const authRouter = require("./routes/auth");
@@ -26,6 +27,7 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", authenticateUser, jobsRouter);
 
 // Error Handling Middleware
+app.use(notFoundMiddleware);
 
 const start = async () => {
   try {
